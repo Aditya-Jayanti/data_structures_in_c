@@ -130,6 +130,21 @@ Node del_at_end(Node head){
 	return head;
 }
 
+Node reverse_list(Node head){
+	Node temp = head;
+	Node prev = NULL;
+	Node next = NULL;
+	while(temp != NULL){
+		next = temp->link;
+		temp->link = prev;
+		prev = temp;
+		temp = next;
+	}
+	head = prev;
+	printf("List reversed!\n");
+	return head;
+}
+
 void free_list(Node head){
 	Node p = head;
 	Node temp;
@@ -166,7 +181,10 @@ int main(void){
 	printf("----------------\n");
 	head = del_at_start(head);
 	print_node(head);
-	printf("----------------\n");	
-	free_list(head);
+	printf("----------------\n");
+	head = reverse_list(head);
+	print_node(head);
+	printf("----------------\n");
+	free_list(head);	
 	return 0;
 }
